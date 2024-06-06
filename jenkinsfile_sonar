@@ -50,8 +50,8 @@ pipeline {
            }		
         }
         stage('sonar') {
-           withSonarQubeEnv('sonarqube') {
 	      steps {
+                withSonarQubeEnv('sonarqube') {
                 echo 'Sonar qube..'
 		sh script: '/opt/maven/bin/mvn sonar:sonar -Dsonar.projectKey=sampleapp -Dsonar.ProjectName=sampleapp -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes/ -Dsonar.language=java -Dsonar.java.source=1.11'	
            }		
