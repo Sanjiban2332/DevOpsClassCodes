@@ -51,7 +51,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv(installationName: 'SonarQube') {
+                withSonarQubeEnv('sonarqube') {
 		sh script: '/opt/maven/bin/mvn sonar:sonar -Dsonar.projectKey=sampleapp -Dsonar.host.url=http://35.200.164.65/:9000 -Dsonar.login=admin'
                 echo 'SonarQube Analysis Completed'
                 }
