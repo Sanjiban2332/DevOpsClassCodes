@@ -54,7 +54,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
 		sh script: '/opt/maven/bin/mvn sonar:sonar \
                           -Dsonar.projectKey=sampleapp \
-                          -Dsonar.host.url=http://18.218.176.225:9000 \
+                          -Dsonar.host.url=http://35.200.164.65/:9000 \
                           -Dsonar.login=admin'
                 echo 'SonarQube Analysis Completed'
                 }
