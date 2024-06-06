@@ -49,11 +49,13 @@ pipeline {
 		        sh script: '/opt/maven/bin/mvn package'	
            }		
         }
-		    stage('sonar') {
+        stage('sonar') {
+           withSonarQubeEnv('sonarqube') {
 	      steps {
                 echo 'Sonar qube..'
-		        sh script: '/opt/maven/bin/mvn sonar:sonar -Dsonar.projectKey=sampleapp -Dsonar.host.url=http://35.200.164.65/:9000 -Dsonar.login=Sonar'	
+		sh script: '/opt/maven/bin/mvn sonar:sonar -Dsonar.projectKey=sampleapp -Dsonar.ProjectName=sampleapp -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes/ -Dsonar.language=java -Dsonar.java.source=1.11'	
            }		
         }
+      }
     }
 }
