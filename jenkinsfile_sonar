@@ -49,13 +49,16 @@ pipeline {
 		        sh script: '/opt/maven/bin/mvn package'	
            }		
         }
-        stage('sonar') {
-	      steps {
-                withSonarQubeEnv('sonarqube') {
-                echo 'Sonar qube..'
-		sh script: '/opt/maven/bin/mvn sonar:sonar'	
-           }		
+        stage('SonarQube Analysis') {
+		  environment {
+                  SCANNER_HOME = tool 'sonar-scanner'
+                    }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+		sh script: '/opt/sonar-scanner -Dsonar.projectKey=sampleapp -Dsonar.ProjectName=sampleapp -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes/ -Dsonar.language=java -Dsonar.java.source=1.11'
+                echo 'SonarQube Analysis Completed'
+                }
+            }
         }
-      }
     }
 }
