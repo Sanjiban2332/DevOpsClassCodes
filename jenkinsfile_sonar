@@ -52,7 +52,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-		sh script: '/opt/maven/bin/mvn sonar:sonar sonar.projectKey="sampleapp"'
+		sh script: '/opt/maven/bin/mvn sonar:sonar -Dsonar.projectKey="sampleapp"'
                 echo 'SonarQube Analysis Completed'
                 }
             }
