@@ -46,5 +46,10 @@ pipeline {
                 }
             }
         }
+        stage('Execute Ansible playbook') {
+            steps {
+                ansiblePlaybook playbook: '/home/devops/playbook/copyWAR.yml'
+            }
+        }
     }
 }
