@@ -20,7 +20,6 @@ doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
 	<!--** Process root node pmd : html header, style, call templates -->
 	<html>  
 		<head>
-	        <h1>Version: 1.1</h1>
 		<title>PMD <xsl:value-of select="//pmd/@version"/> Report: Demo Utilities</title>
 		<style type="text/css">
     .bannercell {
@@ -81,6 +80,7 @@ doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
 		</style>
 		</head>
 		<body>
+		        <h1>Version: 1.1</h1>
 			<a name="top"></a>
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
