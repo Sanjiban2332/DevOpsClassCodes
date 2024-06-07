@@ -46,9 +46,14 @@ pipeline {
                 }
             }
         }
+        stage('Download playbook') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Execute Ansible playbook') {
             steps {
-                sh  script: 'ansible-playbook /home/devops/playbook/copyWAR.yml'
+                sh  script: 'ansible-playbook copywar.yaml'
             }
         }
     }
