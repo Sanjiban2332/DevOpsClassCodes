@@ -9,5 +9,5 @@
         owner: tomcat 
         group: tomcat
     - name: start the tomcat process 
-      shell: bash /opt/tomcat/bin/shutdown.sh
-      shell: bash /opt/tomcat/bin/startup.sh
+      shell: sudo su tomcat -c '/opt/tomcat/bin/shutdown.sh'
+      shell: sudo su tomcat -c '/opt/tomcat/bin/startup.sh'
