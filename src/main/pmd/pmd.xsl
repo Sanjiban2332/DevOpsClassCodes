@@ -18,7 +18,8 @@ doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
 
 <xsl:template match="pmd">
 	<!--** Process root node pmd : html header, style, call templates -->
-	<html>
+	<html>  
+		<h1>Version: 1.1</h1>
 		<head>
 		<title>PMD <xsl:value-of select="//pmd/@version"/> Report: Demo Utilities</title>
 		<style type="text/css">
