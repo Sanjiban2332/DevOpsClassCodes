@@ -48,7 +48,8 @@ pipeline {
         }
         stage('Execute Ansible playbook') {
             steps {
-                sh  script: 'ansible-playbook copywar.yaml'
+                checkout scm
+                sh script: 'ansible-playbook copywar.yaml'
             }
         }
     }
