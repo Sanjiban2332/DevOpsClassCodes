@@ -6,7 +6,7 @@ pipeline {
         stage('compile') {
 	      steps {
                echo 'compiling..'
-	  	       git url: 'https://github.com/lerndevops/DevOpsClassCodes'
+	  	   git url: 'https://github.com/lerndevops/DevOpsClassCodes'
 	           sh script: '/opt/maven/bin/mvn compile'
            }
         }
@@ -44,11 +44,6 @@ pipeline {
 		sh script: '/opt/maven/bin/mvn sonar:sonar'
                 echo 'SonarQube Analysis Completed'
                 }
-            }
-        }
-        stage('Download playbook') {
-            steps {
-                checkout scm
             }
         }
         stage('Execute Ansible playbook') {
