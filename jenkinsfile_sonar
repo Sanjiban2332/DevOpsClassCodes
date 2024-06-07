@@ -48,7 +48,7 @@ pipeline {
         }
         stage('Execute Ansible playbook') {
             steps {
-                ansiblePlaybook playbook: '/home/devops/playbook/copyWAR.yml'
+                sh  script: 'ansible-playbook /home/devops/playbook/copyWAR.yml'
             }
         }
     }
