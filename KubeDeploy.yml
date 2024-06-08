@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: addressbook
-        image: sanjirath/addressbook
+        image: sanjirath/addressbook:8
         ports:
         - containerPort: 8080
 
