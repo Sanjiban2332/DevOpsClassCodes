@@ -56,5 +56,11 @@ pipeline {
                 sh script: 'sudo docker image rm sanjirath/addressbook:$BUILD_NUMBER'
             }
         }
+        stage('Execute Ansible playbook') {
+            steps {
+                checkout scm
+                sh script: 'ansible-playbook KubeDeployPB.yml'
+            }
+        }
     }
 }
