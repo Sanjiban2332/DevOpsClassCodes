@@ -3,4 +3,4 @@
   become: yes
   tasks:
     - name: App deploy
-      shell: kubectl apply -f https://raw.githubusercontent.com/Sanjiban2332/DevOpsClassCodes/master/KubeDeploy.yml
+      shell: kubectl create -f https://raw.githubusercontent.com/Sanjiban2332/DevOpsClassCodes/master/KubeDeploy.yml
