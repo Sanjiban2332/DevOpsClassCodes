@@ -49,6 +49,7 @@ pipeline {
         stage('Execute Dockerfile') {
             steps {
                 checkout scm
+                sh script: 'cd /home/devops/slavedata/workspace/Pipeline_sonar'
                 sh script: 'sudo docker build -t sanjirath/addressbook:$BUILD_NUMBER .'
                 sh script: 'sudo docker login -u sanjirath -p Pupu@2332'
                 sh script: 'sudo docker push sanjirath/addressbook:$BUILD_NUMBER'
