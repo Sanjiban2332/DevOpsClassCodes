@@ -53,6 +53,7 @@ pipeline {
                 sh script: 'sudo docker build -t sanjirath/addressbook:$BUILD_NUMBER .'
                 sh script: 'sudo docker login -u sanjirath -p Pupu@2332'
                 sh script: 'sudo docker push sanjirath/addressbook:$BUILD_NUMBER'
+                sh script: 'sudo docker image rm sanjirath/addressbook:$BUILD_NUMBER'
             }
         }
     }
