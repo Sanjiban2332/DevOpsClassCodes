@@ -1,0 +1,66 @@
+pipeline {
+    agent {
+         label 'javaproject'
+          }
+    stages {
+        stage('compile') {
+	      steps {
+               echo 'compiling..'
+	  	   git url: 'https://github.com/Sanjiban2332/DevOpsClassCodes'
+	           sh script: '/opt/maven/bin/mvn compile'
+           }
+        }
+        stage('codereview-pmd') {
+	      steps {
+                echo 'codereview..'
+	        	sh script: '/opt/maven/bin/mvn -P metrics pmd:pmd'
+                }
+	      post {
+               success {
+		       recordIssues enabledForFailure: true, tool: pmdParser(pattern: '**/target/pmd.xml')
+               }
+           }		
+        }
+        stage('unit-test') {
+	      steps {
+                echo 'unittest..'
+	            sh script: '/opt/maven/bin/mvn test'
+                 }
+	      post {
+               success {
+                   junit 'target/surefire-reports/*.xml'
+               }
+           }			
+        }
+        stage('package') {
+	      steps {
+                echo 'package..'
+		        sh script: '/opt/maven/bin/mvn package'	
+           }		
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+	              	sh script: '/opt/maven/bin/mvn sonar:sonar'
+                  echo 'SonarQube Analysis Completed'
+                }
+            }
+        }
+        stage('Execute Dockerfile') {
+            steps {
+                checkout scm
+                sh script: 'cd /home/devops/slavedata/workspace/Pipeline_Kube'
+                sh script: 'sudo docker build -t sanjirath/addressbook:latest .'
+                sh script: 'sudo docker login -u sanjirath -p Pupu@2332'
+                sh script: 'sudo docker push sanjirath/addressbook:latest'
+                sh script: 'sudo docker image rm sanjirath/addressbook:latest'
+            }
+        }
+        stage('Execute Ansible playbook') {
+            steps {
+                git url: 'https://github.com/Sanjiban2332/JavaProjectDeploy'
+                sh script: 'ansible-playbook KubeDeployPB.yml'
+            }
+        }
+    }
+}
