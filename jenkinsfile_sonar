@@ -6,7 +6,6 @@ pipeline {
         stage('compile') {
 	      steps {
                echo 'compiling..'
-	  	   git url: 'https://github.com/Sanjiban2332/DevOpsClassCodes'
 	           sh script: '/opt/maven/bin/mvn compile'
            }
         }
