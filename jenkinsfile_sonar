@@ -51,5 +51,10 @@ pipeline {
                 sh script: 'ansible-playbook copywar.yaml'
             }
         }
+       stage('Build Pipeline_Kube') {
+            steps {
+                build job: 'Pipeline_Kube',parameters: [string(name: 'GIT_BRANCH_NAME', value: env.BRANCH_NAME)]
+            }
+        }
     }
 }
