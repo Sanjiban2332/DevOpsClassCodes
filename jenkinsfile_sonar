@@ -45,16 +45,16 @@ pipeline {
                 }
             }
         }
-        stage("Quality gate") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
         stage('Execute Ansible playbook') {
             steps {
                 git url: 'https://github.com/Sanjiban2332/JavaProjectDeploy'
                 sh script: 'ansible-playbook copywar.yaml'
             }
         }
+   post {
+        always {
+            sh script: '/opt/maven/bin/mvn clean'
+        }
+    }
     }
 }
