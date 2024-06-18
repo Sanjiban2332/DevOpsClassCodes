@@ -53,7 +53,7 @@ pipeline {
         }
        stage('Clean') {
             steps {
-                cheakout scm
+                checkout scm
                 sh script: '/opt/maven/bin/mvn clean'
             }
         }
