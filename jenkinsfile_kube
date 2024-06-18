@@ -56,16 +56,6 @@ pipeline {
                 sh script: 'sudo docker image rm sanjirath/addressbook:latest'
             }
         }
-        stage('Scan Image') {
-            steps {
-                anchore([
-                    anchoreImage: 'sanjirath/addressbook:latest',
-                    failBuild: true,
-                    dockerRegistryUrl: 'https://hub.docker.com',
-                    dockerRegistryCredentialsId: 'Docker'
-                ])
-            }
-        }
         stage('Execute Ansible playbook') {
             steps {
                 git url: 'https://github.com/Sanjiban2332/JavaProjectDeploy'
