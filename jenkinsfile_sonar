@@ -64,10 +64,5 @@ pipeline {
                 sh script: 'ansible-playbook copywar.yaml'
             }
         }
-       stage('Build Pipeline_Kube') {
-            steps {
-                build job: 'Pipeline_Kube', wait: false
-            }
-        }
     }
 }
