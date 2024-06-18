@@ -45,17 +45,9 @@ pipeline {
                 }
             }
         }
-        stage('Quality Gate') {
+        stage("Quality gate") {
             steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Check SonarQube Quality Gate status
-                    script {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to Quality Gate failure: ${qg.status}"
-                        }
-                    }
-                }
+                waitForQualityGate abortPipeline: true
             }
         }
         stage('Execute Ansible playbook') {
